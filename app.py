@@ -14,9 +14,17 @@ import pandas as pd
 from dash.dependencies import Input, Output
 import os
 
-# Load dataset
-file_path = "Cleaned_Workplace_Injury_Data2_With_LatLong.csv"  # Ensure this file is in the same folder
-df = pd.read_csv(file_path)
+import gdown
+
+# Google Drive File ID (replace with your actual ID)
+file_id = "1MnmmvHyd2iIkkS1QJY0_qX1e-fNgTd8b"  # Replace with your copied file ID
+file_url = f"https://drive.google.com/uc?export=download&id={file_id}"
+
+# Download and load the dataset
+csv_path = "Cleaned_Workplace_Injury_Data2_With_LatLong.csv"
+gdown.download(file_url, csv_path, quiet=False)
+df = pd.read_csv(csv_path)
+
 
 # Initialize Dash app
 app = dash.Dash(__name__)
